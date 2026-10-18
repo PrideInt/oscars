@@ -147,7 +147,7 @@
             "kind": "film",
             "confidence": "likely",
             "pick": "Wildwood",
-            "shouldWin": "Wildwood",
+            "shouldWin": "Avatar Aang: The Last Airbender",
             "winner": "",
             "nominees": [
                 { "name": "Wildwood", "detail": "Travis Knight", "photo": "films/animated_feature_1.jpg" },
@@ -278,11 +278,11 @@
             "shouldWin": "Werwulf",
             "winner": "",
             "nominees": [
-                { "name": "Werwulf", "detail": "[Artists]", "photo": "films/makeup_and_hairstyling_1.jpg" },
-                { "name": "Digger", "detail": "[Artists]", "photo": "films/makeup_and_hairstyling_2.jpg" },
-                { "name": "Clayface", "detail": "[Artists]", "photo": "films/makeup_and_hairstyling_3.jpg" },
-                { "name": "Dune: Part Three", "detail": "[Artists]", "photo": "films/makeup_and_hairstyling_4.jpg" },
-                { "name": "Wicker", "detail": "[Artists]", "photo": "films/makeup_and_hairstyling_5.jpg" }
+                { "name": "Werwulf", "detail": "TBA", "photo": "films/makeup_and_hairstyling_1.jpg" },
+                { "name": "Digger", "detail": "TBA", "photo": "films/makeup_and_hairstyling_2.jpg" },
+                { "name": "Clayface", "detail": "TBA", "photo": "films/makeup_and_hairstyling_3.jpg" },
+                { "name": "Dune: Part Three", "detail": "TBA", "photo": "films/makeup_and_hairstyling_4.jpg" },
+                { "name": "Wicker", "detail": "TBA", "photo": "films/makeup_and_hairstyling_5.jpg" }
             ]
         },
 
@@ -322,15 +322,15 @@
             "title": "Original Score",
             "kind": "film",
             "confidence": "likely",
-            "pick": "The Odyssey",
-            "shouldWin": "The Odyssey",
+            "pick": "Ludwig Göransson",
+            "shouldWin": "Raül Refree",
             "winner": "",
             "nominees": [
-                { "name": "The Odyssey", "detail": "Ludwig Göransson", "photo": "films/score_1.jpg" },
-                { "name": "Dune: Part Three", "detail": "Hans Zimmer", "photo": "films/score_2.jpg" },
-                { "name": "La Bola Negra", "detail": "Raül Refree", "photo": "films/score_3.jpg" },
-                { "name": "Disclosure Day", "detail": "John Williams", "photo": "films/score_4.jpg" },
-                { "name": "Project Hail Mary", "detail": "Daniel Pemberton", "photo": "films/score_5.jpg" }
+                { "name": "Ludwig Göransson", "detail": "The Odyssey", "photo": "films/score_1.jpg" },
+                { "name": "Hans Zimmer", "detail": "Dune: Part Three", "photo": "films/score_2.jpg" },
+                { "name": "Raül Refree", "detail": "La Bola Negra", "photo": "films/score_3.jpg" },
+                { "name": "John Williams", "detail": "Disclosure Day", "photo": "films/score_4.jpg" },
+                { "name": "Daniel Pemberton", "detail": "Project Hail Mary", "photo": "films/score_5.jpg" }
             ]
         },
 

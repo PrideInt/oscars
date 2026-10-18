@@ -19,52 +19,13 @@ const PLACEHOLDERS = {
     nominees: "Nominees not announced yet."
 };
 
-const BUBBLE_GAP = 10;
-const BUBBLE_EDGE = 8;
-
-const bubble = document.createElement("div");
-
-bubble.className = "bubble";
-bubble.id = "filmBubble";
-bubble.setAttribute("role", "tooltip");
-bubble.setAttribute("aria-hidden", "true");
-
-document.body.appendChild(bubble);
-
 let categories = [];
-let activePhoto = null;
 
 shouldToggle.addEventListener("change", () => {
     document.body.classList.toggle("hide-should", !shouldToggle.checked);
 });
 
-document.addEventListener("click", (event) => {
-    const photo = event.target.closest(".tappable");
-
-    if (!photo || photo === activePhoto) {
-        closeBubble();
-        return;
-    }
-
-    openBubble(photo);
-});
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeBubble();
-        return;
-    }
-
-    const photo = event.target.closest ? event.target.closest(".tappable") : null;
-
-    if (photo && (event.key === "Enter" || event.key === " ")) {
-        event.preventDefault();
-        photo.click();
-    }
-});
-
 window.addEventListener("resize", fitNames);
-window.addEventListener("resize", closeBubble);
 
 loadPredictions();
 
@@ -94,7 +55,6 @@ async function loadPredictions() {
     categories = document.querySelectorAll(".category");
 
     setupPhotos();
-    setupBubbles();
     markResults();
 
     fitNames();
@@ -125,8 +85,6 @@ function fillSiteInfo(site) {
     }
 }
 
-/* Cleaning up the JSON so a missing or half-filled field never breaks a card */
-
 function cleanText(value) {
     if (typeof value === "string" || typeof value === "number") {
         return String(value).trim();
@@ -150,6 +108,8 @@ function cleanCategory(raw, index) {
         title: cleanText(raw.title) || "Category " + (index + 1),
         featured: raw.featured === true,
         kind: raw.kind === "person" ? "person" : "film",
+        // On unless the category has "showDetail": false in the JSON
+        showDetail: raw.showDetail !== false,
         confidence: CONFIDENCE_LABELS[confidence] ? confidence : "",
         pick: cleanText(raw.pick),
         shouldWin: cleanText(raw.shouldWin),
@@ -174,8 +134,6 @@ function cleanNominee(raw) {
         photo: cleanText(raw.photo)
     };
 }
-
-/* Building cards */
 
 function renderCategories(list) {
     if (!Array.isArray(list) || list.length === 0) {
@@ -248,7 +206,7 @@ function buildCard(category) {
                 ${buildPill(category.confidence)}
             </div>
 
-            <div class="nominee pick-row${category.pick ? " pick" : ""}" data-name="${escapeHTML(pick.name)}" data-detail="${escapeHTML(pick.detail)}">
+            <div class="nominee pick-row${category.pick ? " pick" : ""}" data-name="${escapeHTML(pick.name)}">
                 ${buildPhoto(pick.photo, pick.name)}
 
                 <div class="pick-text">
@@ -275,11 +233,15 @@ function buildNominee(nominee, category) {
     const name = nominee.name || PLACEHOLDERS.nominee;
     const label = nominee.detail ? name + " — " + nominee.detail : name;
 
+    const showDetail = category.showDetail && nominee.detail && !isPick(nominee, category);
+    const comma = showDetail ? `<span class="comma">,</span>` : "";
+    const detail = showDetail ? ` <span class="detail">${escapeHTML(nominee.detail)}</span>` : "";
+
     return `
-        <li class="nominee${isPick(nominee, category) ? " pick" : ""}" data-name="${escapeHTML(nominee.name)}" data-detail="${escapeHTML(nominee.detail)}" title="${escapeHTML(label)}">
+        <li class="nominee${isPick(nominee, category) ? " pick" : ""}" data-name="${escapeHTML(nominee.name)}" title="${escapeHTML(label)}">
             ${buildPhoto(nominee.photo, name)}
 
-            <span class="name${nominee.name ? "" : " tba"}">${escapeHTML(name)}</span>
+            <span class="name${nominee.name ? "" : " tba"}"><span class="who">${escapeHTML(name)}${comma}</span>${detail}</span>
         </li>
     `;
 }
@@ -317,7 +279,6 @@ function isPick(nominee, category) {
     return sameName(nominee.name, category.pick);
 }
 
-// Treats names as equal even if capitals, spacing or curly vs straight quotes differ
 function sameName(a, b) {
     const normalize = (value) => String(value || "")
         .normalize("NFKC")
@@ -343,8 +304,6 @@ function escapeHTML(value) {
         .replaceAll("'", "&#39;");
 }
 
-/* Photos: any image that's missing or fails to load becomes a placeholder */
-
 function setupPhotos() {
     document.querySelectorAll(".photo img").forEach((img) => {
         if (img.complete && img.naturalWidth === 0) {
@@ -362,76 +321,6 @@ function showPlaceholder(img) {
     img.parentElement.classList.add("empty");
 }
 
-/* Film bubble: tap a person's photo to see the film they're nominated for */
-
-function setupBubbles() {
-    document.querySelectorAll('.category[data-kind="person"] .nominee .photo').forEach((photo) => {
-        const name = photo.closest(".nominee").dataset.name || PLACEHOLDERS.nominee;
-
-        photo.classList.add("tappable");
-        photo.tabIndex = 0;
-
-        photo.setAttribute("role", "button");
-        photo.setAttribute("aria-label", "Show the film for " + name);
-        photo.setAttribute("aria-expanded", "false");
-    });
-}
-
-function openBubble(photo) {
-    closeBubble();
-
-    const film = photo.closest(".nominee").dataset.detail;
-
-    bubble.textContent = film || "Film TBA";
-    bubble.classList.remove("below");
-
-    const rect = photo.getBoundingClientRect();
-    const width = bubble.offsetWidth;
-    const height = bubble.offsetHeight;
-
-    const center = rect.left + rect.width / 2;
-    const left = clamp(center - width / 2, BUBBLE_EDGE, window.innerWidth - width - BUBBLE_EDGE);
-
-    let top = rect.top - height - BUBBLE_GAP;
-
-    if (top < BUBBLE_EDGE) {
-        top = rect.bottom + BUBBLE_GAP;
-        bubble.classList.add("below");
-    }
-
-    bubble.style.left = left + window.scrollX + "px";
-    bubble.style.top = top + window.scrollY + "px";
-    bubble.style.setProperty("--arrow-x", center - left + "px");
-
-    bubble.classList.add("show");
-    bubble.setAttribute("aria-hidden", "false");
-
-    photo.setAttribute("aria-expanded", "true");
-    photo.setAttribute("aria-describedby", bubble.id);
-
-    activePhoto = photo;
-}
-
-function closeBubble() {
-    if (!activePhoto) {
-        return;
-    }
-
-    bubble.classList.remove("show");
-    bubble.setAttribute("aria-hidden", "true");
-
-    activePhoto.setAttribute("aria-expanded", "false");
-    activePhoto.removeAttribute("aria-describedby");
-
-    activePhoto = null;
-}
-
-function clamp(value, min, max) {
-    return Math.max(min, Math.min(max, value));
-}
-
-/* Names: lines only break between words, so shrink a label whose longest word is wider than its photo */
-
 const MIN_NAME_SIZE = 9;
 
 function fitNames() {
@@ -446,8 +335,6 @@ function fitNames() {
         }
     });
 }
-
-/* Results */
 
 function markResults() {
     let picked = 0;
