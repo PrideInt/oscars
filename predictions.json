@@ -177,7 +177,7 @@
         {
             "title": "Documentary Feature",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "lock",
             "pick": "You Can See Everything",
             "shouldWin": "NAZA",
             "winner": "",
@@ -257,7 +257,7 @@
         {
             "title": "Costume Design",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "tossup",
             "pick": "The Odyssey",
             "shouldWin": "I Love Boosters",
             "winner": "",
@@ -273,7 +273,7 @@
         {
             "title": "Makeup and Hairstyling",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "tossup",
             "pick": "Werwulf",
             "shouldWin": "Werwulf",
             "winner": "",
@@ -289,7 +289,7 @@
         {
             "title": "Sound",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "tossup",
             "pick": "Dune: Part Three",
             "shouldWin": "Dune: Part Three",
             "winner": "",
@@ -305,7 +305,7 @@
         {
             "title": "Visual Effects",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "tossup",
             "pick": "Dune: Part Three",
             "shouldWin": "Dune: Part Three",
             "winner": "",
@@ -321,7 +321,7 @@
         {
             "title": "Original Score",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "lock",
             "pick": "Ludwig Göransson",
             "shouldWin": "Raül Refree",
             "winner": "",
