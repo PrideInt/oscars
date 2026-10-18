@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Oscar Picks</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <header>
+                <div class="intro">
+                    <p class="eyebrow"><span id="siteEdition"></span> · Predictions</p>
+                    <h1>Pride's <em>Oscar's</em> Predictions</h1>
+                    <p class="lede">Who I think will win and should win and all that jazz. <span id="siteUpdated"></span></p>
+                </div>
+
+                <aside class="scorebox">
+                    <span class="label">Ceremony</span>
+                    <span class="date" id="siteCeremony"></span>
+                    <span class="score" id="scoreText" aria-live="polite"></span>
+                </aside>
+            </header>
+
+            <div class="toolbar">
+                <label class="toggle">
+                    <input type="checkbox" id="showShould" checked>
+                    <span>Show “should win”</span>
+                </label>
+
+                <ul class="legend" aria-label="Confidence key">
+                    <li><span class="dot lock"></span>Lock</li>
+                    <li><span class="dot likely"></span>Likely</li>
+                    <li><span class="dot tossup"></span>Toss-up</li>
+                </ul>
+            </div>
+
+            <main>
+                <!-- Every card is built from predictions.json -->
+
+                <div id="featured"></div>
+
+                <div class="grid" id="grid"></div>
+
+                <p class="message" id="emptyText" hidden></p>
+            </main>
+
+            <footer>
+                <span>Predictions by <span id="siteAuthor"></span></span>
+                <span>Not affiliated with the Academy of Motion Picture Arts and Sciences.</span>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
