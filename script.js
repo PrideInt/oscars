@@ -7,7 +7,6 @@ const emptyText = document.getElementById("emptyText");
 
 const SNAPSHOTS = [
     { id: "current", label: "Current (NYFF)", date: "Latest", file: "predictions.json" },
-    { id: "venice", label: "Venice", date: "Sep 12", file: "predictions-venice.json" },
     { id: "critics-choice", label: "Critics Choice", date: "Jan 3", file: "predictions-critics-choice.json" },
     { id: "golden-globes", label: "Golden Globes", date: "Jan 10", file: "predictions-golden-globes.json" },
     { id: "bafta", label: "BAFTA", date: "Feb 21", file: "predictions-bafta.json" },
@@ -510,17 +509,11 @@ function fitNames() {
 }
 
 function markResults() {
-    let picked = 0;
-    let decided = 0;
     let correct = 0;
 
     categories.forEach((category) => {
         const winner = category.dataset.winner;
         const pick = category.querySelector(".nominee.pick");
-
-        if (pick) {
-            picked++;
-        }
 
         if (!winner) {
             return;
@@ -535,10 +528,7 @@ function markResults() {
         if (!pick) {
             return;
         }
-
         const hit = sameName(pick.dataset.name, winner);
-
-        decided++;
 
         if (hit) {
             correct++;
@@ -554,10 +544,5 @@ function markResults() {
         category.querySelector(".card-head").appendChild(badge);
     });
 
-    if (decided === 0) {
-        scoreText.textContent = picked + " of " + categories.length + " categories predicted";
-        return;
-    }
-
-    scoreText.textContent = "Score: " + correct + " / " + decided + " correct";
+    scoreText.textContent = correct + " of " + categories.length + " predicted correctly";
 }
