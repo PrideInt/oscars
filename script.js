@@ -5,12 +5,40 @@ const shouldToggle = document.getElementById("showShould");
 const scoreText = document.getElementById("scoreText");
 const emptyText = document.getElementById("emptyText");
 
-const DATA_FILE = "predictions.json";
+const SNAPSHOTS = [
+    { id: "current", label: "Current (NYFF)", date: "Latest", file: "predictions.json" },
+    { id: "venice", label: "Venice", date: "Sep 12", file: "predictions-venice.json" },
+    { id: "critics-choice", label: "Critics Choice", date: "Jan 3", file: "predictions-critics-choice.json" },
+    { id: "golden-globes", label: "Golden Globes", date: "Jan 10", file: "predictions-golden-globes.json" },
+    { id: "bafta", label: "BAFTA", date: "Feb 21", file: "predictions-bafta.json" },
+    { id: "sag", label: "SAG", date: "Feb 28", file: "predictions-sag.json" },
+];
+
+const DEFAULT_SNAPSHOT = "current";
 
 const CONFIDENCE_LABELS = {
     lock: "Lock",
     likely: "Likely",
     tossup: "Toss-up"
+};
+
+const PHOTO_FOLDERS = {
+    film: "films",
+    person: "people"
+};
+
+const PHOTO_EXTENSION = ".jpg";
+
+const SPECIAL_LETTERS = {
+    "ø": "o",
+    "æ": "ae",
+    "œ": "oe",
+    "ß": "ss",
+    "ł": "l",
+    "đ": "d",
+    "ð": "d",
+    "þ": "th",
+    "ı": "i"
 };
 
 const PLACEHOLDERS = {
@@ -20,20 +48,95 @@ const PLACEHOLDERS = {
 };
 
 let categories = [];
+let currentFile = "";
+let loadCount = 0;
+
+const snapshotNav = buildSnapshotNav();
 
 shouldToggle.addEventListener("change", () => {
     document.body.classList.toggle("hide-should", !shouldToggle.checked);
 });
 
+snapshotNav.addEventListener("click", (event) => {
+    const button = event.target.closest(".snapshot");
+
+    if (button) {
+        showSnapshot(button.dataset.snapshot);
+    }
+});
+
+window.addEventListener("hashchange", () => {
+    showSnapshot(getSnapshotFromHash());
+});
+
 window.addEventListener("resize", fitNames);
 
-loadPredictions();
+showSnapshot(getSnapshotFromHash());
 
-async function loadPredictions() {
+function buildSnapshotNav() {
+    let nav = document.getElementById("snapshots");
+
+    if (!nav) {
+        nav = document.createElement("nav");
+        nav.id = "snapshots";
+
+        document.querySelector(".toolbar").before(nav);
+    }
+
+    nav.classList.add("snapshots");
+    nav.setAttribute("aria-label", "Prediction snapshots");
+
+    nav.innerHTML = SNAPSHOTS.map((snapshot) => `
+        <button type="button" class="snapshot" data-snapshot="${snapshot.id}" aria-pressed="false">
+            <span class="snapshot-label">${escapeHTML(snapshot.label)}</span>
+            <span class="snapshot-date">${escapeHTML(snapshot.date)}</span>
+        </button>
+    `).join("");
+
+    return nav;
+}
+
+function findSnapshot(id) {
+    return SNAPSHOTS.find((snapshot) => snapshot.id === id);
+}
+
+function getSnapshotFromHash() {
+    const id = location.hash.slice(1);
+
+    return findSnapshot(id) ? id : DEFAULT_SNAPSHOT;
+}
+
+function showSnapshot(id) {
+    const snapshot = findSnapshot(id) || findSnapshot(DEFAULT_SNAPSHOT);
+
+    snapshotNav.querySelectorAll(".snapshot").forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.snapshot === snapshot.id);
+    });
+
+    if (snapshot.id === DEFAULT_SNAPSHOT) {
+        history.replaceState(null, "", location.pathname + location.search);
+    } else {
+        history.replaceState(null, "", "#" + snapshot.id);
+    }
+
+    loadPredictions(snapshot);
+}
+
+async function loadPredictions(snapshot) {
+    const thisLoad = ++loadCount;
     let data;
 
+    currentFile = snapshot.file;
+
     try {
-        const response = await fetch(DATA_FILE, { cache: "no-cache" });
+        const response = await fetch(snapshot.file, { cache: "no-cache" });
+
+        if (response.status === 404) {
+            if (thisLoad === loadCount) {
+                showMissingSnapshot(snapshot);
+            }
+            return;
+        }
 
         if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
@@ -41,13 +144,21 @@ async function loadPredictions() {
 
         data = await response.json();
     } catch (error) {
-        showLoadError(error);
+        if (thisLoad === loadCount) {
+            showLoadError(error);
+        }
+        return;
+    }
+
+    if (thisLoad !== loadCount) {
         return;
     }
 
     if (!data || typeof data !== "object") {
         data = {};
     }
+
+    clearCards();
 
     fillSiteInfo(data.site);
     renderCategories(data.categories);
@@ -61,14 +172,41 @@ async function loadPredictions() {
     document.fonts.ready.then(fitNames);
 }
 
-function showLoadError(error) {
-    console.error(`Couldn't load ${DATA_FILE}:`, error);
+function clearCards() {
+    featured.innerHTML = "";
+    grid.innerHTML = "";
+
+    emptyText.hidden = true;
+    emptyText.textContent = "";
+
+    categories = [];
+}
+
+function showMissingSnapshot(snapshot) {
+    clearCards();
 
     emptyText.textContent =
-        `Couldn't load ${DATA_FILE} (${error.message}). ` +
-        "If you opened index.html straight from a folder, run it from a local server instead.";
+        `The ${snapshot.label} snapshot hasn't been saved yet. `
 
     emptyText.hidden = false;
+
+    scoreText.textContent = "Snapshot not saved yet";
+    document.getElementById("siteUpdated").textContent = "";
+}
+
+function showLoadError(error) {
+    console.error(`Couldn't load ${currentFile}:`, error);
+
+    clearCards();
+
+    emptyText.textContent =
+        `Couldn't load ${currentFile} (${error.message}). ` +
+        "Check the file is valid JSON. If you opened index.html straight from a folder, run it from a local server instead.";
+
+    emptyText.hidden = false;
+
+    scoreText.textContent = "";
+    document.getElementById("siteUpdated").textContent = "";
 }
 
 function fillSiteInfo(site) {
@@ -80,9 +218,8 @@ function fillSiteInfo(site) {
     document.getElementById("siteCeremony").textContent = cleanText(site.ceremony) || "TBA";
     document.getElementById("siteAuthor").textContent = cleanText(site.author) || "me";
 
-    if (cleanText(site.updated)) {
-        document.getElementById("siteUpdated").textContent = "Updated " + cleanText(site.updated) + ".";
-    }
+    document.getElementById("siteUpdated").textContent =
+        cleanText(site.updated) ? "Updated " + cleanText(site.updated) + "." : "";
 }
 
 function cleanText(value) {
@@ -104,40 +241,76 @@ function cleanCategory(raw, index) {
         console.warn(`Category ${index + 1}: confidence "${confidence}" should be lock, likely or tossup.`);
     }
 
+    const kind = raw.kind === "person" ? "person" : "film";
+
     return {
         title: cleanText(raw.title) || "Category " + (index + 1),
         featured: raw.featured === true,
-        kind: raw.kind === "person" ? "person" : "film",
-        // On unless the category has "showDetail": false in the JSON
+        kind: kind,
         showDetail: raw.showDetail !== false,
         confidence: CONFIDENCE_LABELS[confidence] ? confidence : "",
         pick: cleanText(raw.pick),
         shouldWin: cleanText(raw.shouldWin),
         why: cleanText(raw.why),
         winner: cleanText(raw.winner),
-        nominees: Array.isArray(raw.nominees) ? raw.nominees.map(cleanNominee) : []
+        nominees: Array.isArray(raw.nominees) ? raw.nominees.map((nominee) => cleanNominee(nominee, kind)) : []
     };
 }
 
-function cleanNominee(raw) {
+function cleanNominee(raw, kind) {
     if (typeof raw === "string") {
-        return { name: raw.trim(), detail: "", photo: "" };
+        raw = { name: raw };
     }
 
     if (!raw || typeof raw !== "object") {
         raw = {};
     }
 
+    const name = cleanText(raw.name);
+    const detail = cleanText(raw.detail);
+
     return {
-        name: cleanText(raw.name),
-        detail: cleanText(raw.detail),
-        photo: cleanText(raw.photo)
+        name: name,
+        detail: isPlaceholder(detail) ? "" : detail,
+        photo: photoPath(name, kind)
     };
+}
+
+function isPlaceholder(value) {
+    return /^(tba|tbd|n\/a|\[.*\])$/i.test(value);
+}
+
+function photoPath(name, kind) {
+    // Placeholders like "TBA", "[Nominee 2]" or an empty name get no photo
+    if (!name || isPlaceholder(name)) {
+        return "";
+    }
+
+    const slug = slugify(name);
+
+    if (!slug) {
+        return "";
+    }
+
+    return PHOTO_FOLDERS[kind] + "/" + slug + PHOTO_EXTENSION;
+}
+
+function slugify(text) {
+    return String(text)
+        .replace(/[¼-¾⅐-⅟]/g, (fraction) => "-" + fraction)
+        .normalize("NFKD")
+        .replace(/[̀-ͯ]/g, "")
+        .toLowerCase()
+        .replace(/[øæœßłđðþı]/g, (letter) => SPECIAL_LETTERS[letter])
+        .replace(/['’‘`]/g, "")
+        .replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
 }
 
 function renderCategories(list) {
     if (!Array.isArray(list) || list.length === 0) {
-        emptyText.textContent = `No categories in ${DATA_FILE} yet.`;
+        emptyText.textContent = `No categories in ${currentFile} yet.`;
         emptyText.hidden = false;
         return;
     }
@@ -156,13 +329,13 @@ function renderCategories(list) {
                 grid.insertAdjacentHTML("beforeend", buildCard(category));
             }
         } catch (error) {
-            console.error(`Skipped category ${index + 1} in ${DATA_FILE}:`, error);
+            console.error(`Skipped category ${index + 1} in ${currentFile}:`, error);
         }
     });
 }
 
 function buildFeatured(category) {
-    const pick = findPick(category) || { name: category.pick, photo: "" };
+    const pick = findPick(category) || { name: category.pick, photo: photoPath(category.pick, category.kind) };
 
     return `
         <section class="card featured category" ${buildDataAttributes(category)}>
@@ -196,7 +369,7 @@ function buildFeatured(category) {
 }
 
 function buildCard(category) {
-    const pick = findPick(category) || { name: category.pick, detail: "", photo: "" };
+    const pick = findPick(category) || { name: category.pick, detail: "", photo: photoPath(category.pick, category.kind) };
     const others = category.nominees.filter((nominee) => !isPick(nominee, category));
 
     return `
