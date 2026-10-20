@@ -406,7 +406,7 @@ function buildNominee(nominee, category) {
     const name = nominee.name || PLACEHOLDERS.nominee;
     const label = nominee.detail ? name + " — " + nominee.detail : name;
 
-    const showDetail = category.showDetail && nominee.detail && !isPick(nominee, category);
+    const showDetail = category.showDetail && nominee.detail;
     const comma = showDetail ? `<span class="comma">,</span>` : "";
     const detail = showDetail ? ` <span class="detail">${escapeHTML(nominee.detail)}</span>` : "";
 

@@ -629,6 +629,8 @@ body.hide-should .should {
 }
 
 .ballot .who {
+    flex: 1 1 0;
+
     min-width: 0;
 }
 
