@@ -518,7 +518,7 @@ body.hide-should .should {
     line-height: 1;
     letter-spacing: -0.01em;
 
-    overflow-wrap: normal;
+    overflow-wrap: break-word;
     word-break: normal;
 }
 
@@ -605,7 +605,7 @@ body.hide-should .should {
 
     color: #d9d3c4;
 
-    overflow-wrap: normal;
+    overflow-wrap: break-word;
     word-break: normal;
 }
 
@@ -718,7 +718,7 @@ body.hide-should .should {
 
     line-height: 1.1;
 
-    overflow-wrap: normal;
+    overflow-wrap: break-word;
     word-break: normal;
 }
 
@@ -767,7 +767,7 @@ body.hide-should .should {
 
     color: #b3ac9a;
 
-    overflow-wrap: normal;
+    overflow-wrap: break-word;
     word-break: normal;
 }
 

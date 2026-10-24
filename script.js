@@ -498,6 +498,7 @@ const MIN_NAME_SIZE = 9;
 function fitNames() {
     document.querySelectorAll(".others .name, .ballot .name").forEach((name) => {
         name.style.fontSize = "";
+        name.style.overflowWrap = "normal";
 
         let size = parseFloat(getComputedStyle(name).fontSize);
 
@@ -505,6 +506,7 @@ function fitNames() {
             size -= 0.5;
             name.style.fontSize = size + "px";
         }
+        name.style.overflowWrap = "";
     });
 }
 
