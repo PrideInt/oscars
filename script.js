@@ -499,6 +499,7 @@ function showPlaceholder(img) {
 }
 
 const MIN_NAME_SIZE = 9;
+const MAX_NAME_LINES = 2;
 
 function fitNames() {
     document.querySelectorAll(".others .name, .ballot .name").forEach((name) => {
@@ -511,8 +512,40 @@ function fitNames() {
             size -= 0.5;
             name.style.fontSize = size + "px";
         }
+        const who = name.querySelector(".who") || name;
+        const fitted = size;
+
+        while (countLines(who) > MAX_NAME_LINES && size > MIN_NAME_SIZE) {
+            size -= 0.5;
+            name.style.fontSize = size + "px";
+        }
+        
+        if (countLines(who) > MAX_NAME_LINES) {
+            name.style.fontSize = fitted + "px";
+        }
         name.style.overflowWrap = "";
     });
+}
+
+function countLines(element) {
+    const range = document.createRange();
+    
+    range.selectNodeContents(element);
+
+    const tops = [...range.getClientRects()].map((rect) => rect.top).sort((a, b) => a - b);
+    const sameLine = parseFloat(getComputedStyle(element).fontSize) / 2;
+
+    let lines = 0;
+    let lastTop = -Infinity;
+
+    tops.forEach((top) => {
+        if (top - lastTop > sameLine) {
+            lines++;
+            lastTop = top;
+        }
+    });
+
+    return lines;
 }
 
 function markResults() {
