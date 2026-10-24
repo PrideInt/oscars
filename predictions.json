@@ -58,7 +58,7 @@
                 { "name": "Inde Navarrette", "detail": "Obsession" },
                 { "name": "Olivia Wilde", "detail": "The Invite" },
                 { "name": "Virginie Efira", "detail": "All of a Sudden" },
-                { "name": "Sandra Hüller", "detail": "Rose" }
+                { "name": "Zendaya", "detail": "Dune: Part Three" }
             ]
         },
 
@@ -89,7 +89,7 @@
                 { "name": "Anne Hathaway", "detail": "The Odyssey" },
                 { "name": "Penélope Cruz", "detail": "The Invite" },
                 { "name": "Tao Okamoto", "detail": "All of a Sudden" },
-                { "name": "Penélope Cruz", "detail": "La Bola Negra" },
+                { "name": "Amanda Seyfried", "detail": "You Can See Everything" },
                 { "name": "Samantha Morton", "detail": "The Odyssey" }
             ]
         },
@@ -186,7 +186,7 @@
                 { "name": "NAZA", "detail": "Yuval Abraham, Rachel Szor" },
                 { "name": "Once Upon a Time in Harlem", "detail": "William Greaves, David Greaves" },
                 { "name": "American Doctor", "detail": "Poh Si Teng" },
-                { "name": "TBA", "detail": "TBA" }
+                { "name": "Rehearsals for a Revolution", "detail": "Pegah Ahangarani" }
             ]
         },
 
@@ -298,7 +298,7 @@
                 { "name": "The Odyssey", "detail": "Craig Henighan" },
                 { "name": "La Bola Negra", "detail": "Alejandro López" },
                 { "name": "Project Hail Mary", "detail": "Erik Aadahl, Ethan Van der Ryn" },
-                { "name": "TBA", "detail": "TBA" }
+                { "name": "Whalefall", "detail": "James Miller" }
             ]
         },
 
