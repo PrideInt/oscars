@@ -26,7 +26,7 @@ const PHOTO_FOLDERS = {
     person: "people"
 };
 
-const PHOTO_EXTENSION = ".jpg";
+const PHOTO_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"];
 
 const SPECIAL_LETTERS = {
     "ø": "o",
@@ -290,8 +290,7 @@ function photoPath(name, kind) {
     if (!slug) {
         return "";
     }
-
-    return PHOTO_FOLDERS[kind] + "/" + slug + PHOTO_EXTENSION;
+    return PHOTO_FOLDERS[kind] + "/" + slug;
 }
 
 function slugify(text) {
@@ -427,7 +426,7 @@ function buildPhoto(photo, alt, extraClass = "") {
 
     return `
         <div class="${classes}">
-            <img src="${escapeHTML(photo)}" alt="${escapeHTML(alt)}" loading="lazy">
+            <img src="${escapeHTML(photo + PHOTO_EXTENSIONS[0])}" data-base="${escapeHTML(photo)}" data-try="0" alt="${escapeHTML(alt)}" loading="lazy">
         </div>
     `;
 }
@@ -478,15 +477,21 @@ function escapeHTML(value) {
 
 function setupPhotos() {
     document.querySelectorAll(".photo img").forEach((img) => {
-        if (img.complete && img.naturalWidth === 0) {
-            showPlaceholder(img);
-            return;
-        }
-
         img.addEventListener("error", () => {
-            showPlaceholder(img);
+            tryNextExtension(img);
         });
     });
+}
+
+function tryNextExtension(img) {
+    const next = Number(img.dataset.try) + 1;
+
+    if (next >= PHOTO_EXTENSIONS.length) {
+        showPlaceholder(img);
+        return;
+    }
+    img.dataset.try = next;
+    img.src = img.dataset.base + PHOTO_EXTENSIONS[next];
 }
 
 function showPlaceholder(img) {
