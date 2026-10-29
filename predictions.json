@@ -21,12 +21,12 @@
                 { "name": "La Bola Negra", "detail": "(Netflix)" },
                 { "name": "You Can See Everything", "detail": "(A24)" },
                 { "name": "Dune: Part Three", "detail": "(Warner Bros.)" },
-                { "name": "The Invite", "detail": "(A24)" },
                 { "name": "Project Hail Mary", "detail": "(Amazon-MGM)" },
+                { "name": "The Invite", "detail": "(A24)" },
                 { "name": "All of a Sudden", "detail": "(Neon)" },
                 { "name": "The Debut", "detail": "(A24)" },
-                { "name": "Obsession", "detail": "(Focus Features)" },
-                { "name": "Wild Horse Nine", "detail": "(Searchlight)" }
+                { "name": "Wild Horse Nine", "detail": "(Searchlight)" },
+                { "name": "Obsession", "detail": "(Focus Features)" }
             ]
         },
 
@@ -40,8 +40,8 @@
             "nominees": [
                 { "name": "Javier Ambrossi, Javier Calvo", "detail": "La Bola Negra" },
                 { "name": "Christopher Nolan", "detail": "The Odyssey" },
-                { "name": "Denis Villeneuve", "detail": "Dune: Part Three" },
                 { "name": "Nathan Fielder, Lance Oppenheim", "detail": "You Can See Everything" },
+                { "name": "Denis Villeneuve", "detail": "Dune: Part Three" },
                 { "name": "Olivia Wilde", "detail": "The Invite" }
             ]
         },
@@ -106,7 +106,7 @@
                 { "name": "Andrew Garfield", "detail": "Artificial" },
                 { "name": "Edward Norton", "detail": "The Invite" },
                 { "name": "Guitarricadelafuente", "detail": "La Bola Negra" },
-                { "name": "John Leguizamo", "detail": "The Odyssey" }
+                { "name": "Sam Rockwell", "detail": "Wild Horse Nine" }
             ]
         },
 
@@ -114,12 +114,12 @@
             "title": "Original Screenplay",
             "kind": "film",
             "confidence": "likely",
-            "pick": "The Debut",
+            "pick": "Wild Horse Nine",
             "shouldWin": "Club Kid",
             "winner": "",
             "nominees": [
-                { "name": "The Debut", "detail": "Jesse Eisenberg" },
                 { "name": "Wild Horse Nine", "detail": "Martin McDonagh" },
+                { "name": "The Debut", "detail": "Jesse Eisenberg" },
                 { "name": "Club Kid", "detail": "Jordan Firstman" },
                 { "name": "Artificial", "detail": "Simon Rich" },
                 { "name": "Obsession", "detail": "Curry Barker" }
@@ -129,7 +129,7 @@
         {
             "title": "Adapted Screenplay",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "lock",
             "pick": "La Bola Negra",
             "shouldWin": "La Bola Negra",
             "winner": "",
@@ -265,7 +265,7 @@
                 { "name": "The Odyssey", "detail": "Ellen Mirojnick" },
                 { "name": "La Bola Negra", "detail": "Ana López Cobos" },
                 { "name": "Dune: Part Three", "detail": "Jacqueline West" },
-                { "name": "Michael", "detail": "Marci Rodgers" },
+                { "name": "Sense and Sensibility", "detail": "Grace Snell" },
                 { "name": "I Love Boosters", "detail": "Shirley Kurata" }
             ]
         },
@@ -298,7 +298,7 @@
                 { "name": "The Odyssey", "detail": "Craig Henighan" },
                 { "name": "La Bola Negra", "detail": "Alejandro López" },
                 { "name": "Project Hail Mary", "detail": "Erik Aadahl, Ethan Van der Ryn" },
-                { "name": "Whalefall", "detail": "James Miller" }
+                { "name": "Wildwood", "detail": "Ben Meechan" }
             ]
         },
 
@@ -337,7 +337,7 @@
         {
             "title": "Original Song",
             "kind": "film",
-            "confidence": "likely",
+            "confidence": "lock",
             "pick": "La Nieve",
             "shouldWin": "La Nieve",
             "winner": "",
