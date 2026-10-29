@@ -477,7 +477,14 @@ function escapeHTML(value) {
 
 function setupPhotos() {
     document.querySelectorAll(".photo img").forEach((img) => {
+        img.addEventListener("load", () => {
+            img.dataset.loaded = "true";
+        });
+
         img.addEventListener("error", () => {
+            if (img.dataset.loaded) {
+                return;
+            }
             tryNextExtension(img);
         });
     });
@@ -490,6 +497,8 @@ function tryNextExtension(img) {
         showPlaceholder(img);
         return;
     }
+    img.loading = "eager";
+
     img.dataset.try = next;
     img.src = img.dataset.base + PHOTO_EXTENSIONS[next];
 }
