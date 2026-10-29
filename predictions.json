@@ -118,8 +118,8 @@
             "shouldWin": "Club Kid",
             "winner": "",
             "nominees": [
-                { "name": "The Debut", "detail": "Jesse Eisenberg" },
                 { "name": "Wild Horse Nine", "detail": "Martin McDonagh" },
+                { "name": "The Debut", "detail": "Jesse Eisenberg" },
                 { "name": "Club Kid", "detail": "Jordan Firstman" },
                 { "name": "Artificial", "detail": "Simon Rich" },
                 { "name": "Obsession", "detail": "Curry Barker" }
@@ -265,7 +265,7 @@
                 { "name": "The Odyssey", "detail": "Ellen Mirojnick" },
                 { "name": "La Bola Negra", "detail": "Ana López Cobos" },
                 { "name": "Dune: Part Three", "detail": "Jacqueline West" },
-                { "name": "Michael", "detail": "Marci Rodgers" },
+                { "name": "Sense and Sensibility", "detail": "Grace Snell" },
                 { "name": "I Love Boosters", "detail": "Shirley Kurata" }
             ]
         },
@@ -298,7 +298,7 @@
                 { "name": "The Odyssey", "detail": "Craig Henighan" },
                 { "name": "La Bola Negra", "detail": "Alejandro López" },
                 { "name": "Project Hail Mary", "detail": "Erik Aadahl, Ethan Van der Ryn" },
-                { "name": "Whalefall", "detail": "James Miller" }
+                { "name": "Wildwood", "detail": "Ben Meechan" }
             ]
         },
 
