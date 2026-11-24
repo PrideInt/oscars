@@ -12,20 +12,20 @@
             "featured": true,
             "kind": "film",
             "confidence": "likely",
-            "pick": "The Odyssey",
+            "pick": "La Bola Negra",
             "shouldWin": "La Bola Negra",
-            "why": "I think this year, the competition's pretty small against The Odyssey. Most of the acclaimed films either haven't yet been received by general audience critics, or haven't made that big of a splash yet. I think obviously, The Debut, All of a Sudden, Possible Love, Club Kid, even Gozilla Minus Zero would be serious contenders. But the biggest competition The Odyssey has by far is the EXCELLENT queer epic: La Bola Negra. That, and You Can See Everything.",
+            "why": "I finally switched from The Odyssey to La Bola Negra. I think--now--it has one of the strongest chances this year, and with Netflix's backing, and how much passion is slowly fading from The Odyssey, as well as the critical acclaim for La Bola Negra, it just feels like the right pick.",
             "winner": "",
             "nominees": [
-                { "name": "The Odyssey", "detail": "(Universal)" },
                 { "name": "La Bola Negra", "detail": "(Netflix)" },
+                { "name": "The Odyssey", "detail": "(Universal)" },
                 { "name": "You Can See Everything", "detail": "(A24)" },
                 { "name": "Dune: Part Three", "detail": "(Warner Bros.)" },
                 { "name": "Project Hail Mary", "detail": "(Amazon-MGM)" },
                 { "name": "The Invite", "detail": "(A24)" },
-                { "name": "All of a Sudden", "detail": "(Neon)" },
-                { "name": "The Debut", "detail": "(A24)" },
                 { "name": "Wild Horse Nine", "detail": "(Searchlight)" },
+                { "name": "The Debut", "detail": "(A24)" },
+                { "name": "Artificial", "detail": "(Neon)" },
                 { "name": "Obsession", "detail": "(Focus Features)" }
             ]
         },
@@ -39,8 +39,8 @@
             "winner": "",
             "nominees": [
                 { "name": "Javier Ambrossi, Javier Calvo", "detail": "La Bola Negra" },
-                { "name": "Christopher Nolan", "detail": "The Odyssey" },
                 { "name": "Nathan Fielder, Lance Oppenheim", "detail": "You Can See Everything" },
+                { "name": "Christopher Nolan", "detail": "The Odyssey" },
                 { "name": "Denis Villeneuve", "detail": "Dune: Part Three" },
                 { "name": "Olivia Wilde", "detail": "The Invite" }
             ]
@@ -71,10 +71,10 @@
             "winner": "",
             "nominees": [
                 { "name": "John Malkovich", "detail": "Wild Horse Nine" },
-                { "name": "Matt Damon", "detail": "The Odyssey" },
                 { "name": "Andrew Scott", "detail": "Elsinore" },
-                { "name": "Tom Cruise", "detail": "Digger" },
-                { "name": "Pedro Pascal", "detail": "Behemoth!" }
+                { "name": "Matt Damon", "detail": "The Odyssey" },
+                { "name": "John Turturro", "detail": "The Only Living Pickpocket in New York" },
+                { "name": "Anthony Ippolito", "detail": "I Play Rocky" }
             ]
         },
 
@@ -88,8 +88,8 @@
             "nominees": [
                 { "name": "Anne Hathaway", "detail": "The Odyssey" },
                 { "name": "Penélope Cruz", "detail": "The Invite" },
-                { "name": "Tao Okamoto", "detail": "All of a Sudden" },
                 { "name": "Amanda Seyfried", "detail": "You Can See Everything" },
+                { "name": "Penélope Cruz", "detail": "La Bola Negra" },
                 { "name": "Samantha Morton", "detail": "The Odyssey" }
             ]
         },
@@ -98,12 +98,12 @@
             "title": "Supporting Actor",
             "kind": "person",
             "confidence": "likely",
-            "pick": "Paul Giamatti",
+            "pick": "Andrew Garfield",
             "shouldWin": "Paul Giamatti",
             "winner": "",
             "nominees": [
-                { "name": "Paul Giamatti", "detail": "The Debut" },
                 { "name": "Andrew Garfield", "detail": "Artificial" },
+                { "name": "Paul Giamatti", "detail": "The Debut" },
                 { "name": "Edward Norton", "detail": "The Invite" },
                 { "name": "Guitarricadelafuente", "detail": "La Bola Negra" },
                 { "name": "Sam Rockwell", "detail": "Wild Horse Nine" }
@@ -119,9 +119,9 @@
             "winner": "",
             "nominees": [
                 { "name": "Wild Horse Nine", "detail": "Martin McDonagh" },
+                { "name": "Artificial", "detail": "Simon Rich" },
                 { "name": "The Debut", "detail": "Jesse Eisenberg" },
                 { "name": "Club Kid", "detail": "Jordan Firstman" },
-                { "name": "Artificial", "detail": "Simon Rich" },
                 { "name": "Obsession", "detail": "Curry Barker" }
             ]
         },
@@ -138,7 +138,7 @@
                 { "name": "The Odyssey", "detail": "Christopher Nolan" },
                 { "name": "The Invite", "detail": "Rashida Jones, Will McCormack" },
                 { "name": "Project Hail Mary", "detail": "Drew Goddard" },
-                { "name": "Dune: Part Three", "detail": "Denis Villeneuve" }
+                { "name": "All of a Sudden", "detail": "Ryusuke Hamaguchi, Léa Le Dimna" }
             ]
         },
 
@@ -151,7 +151,7 @@
             "winner": "",
             "nominees": [
                 { "name": "Wildwood", "detail": "Travis Knight" },
-                { "name": "Avatar Aang: The Last Airbender", "detail": "Lauren Montgomery" },
+                { "name": "Tangles", "detail": "Leah Nelson" },
                 { "name": "Iron Boy", "detail": "Louis Clichy" },
                 { "name": "Ray Gunn", "detail": "Brad Bird" },
                 { "name": "Toy Story 5", "detail": "Andrew Stanton" }
@@ -170,7 +170,7 @@
                 { "name": "All of a Sudden", "detail": "Japan" },
                 { "name": "Fjord", "detail": "Romania" },
                 { "name": "Possible Love", "detail": "South Korea" },
-                { "name": "Fatherland", "detail": "Poland" }
+                { "name": "Minotaur", "detail": "Russia" }
             ]
         },
 
@@ -231,10 +231,10 @@
             "winner": "",
             "nominees": [
                 { "name": "La Bola Negra", "detail": "Alberto Gutiérrez" },
+                { "name": "You Can See Everything", "detail": "Adam Locke-Norton" },
                 { "name": "The Odyssey", "detail": "Jennifer Lame" },
                 { "name": "Dune: Part Three", "detail": "Joe Walker" },
-                { "name": "You Can See Everything", "detail": "Adam Locke-Norton" },
-                { "name": "Godzilla Minus Zero", "detail": "Ryūji Miyajima" }
+                { "name": "Project Hail Mary", "detail": "Joel Negron" }
             ]
         },
 
@@ -243,14 +243,14 @@
             "kind": "film",
             "confidence": "likely",
             "pick": "The Odyssey",
-            "shouldWin": "Hope",
+            "shouldWin": "La Bola Negra",
             "winner": "",
             "nominees": [
                 { "name": "The Odyssey", "detail": "Ruth De Jong, Larry Dias" },
                 { "name": "Dune: Part Three", "detail": "Patrice Vermette, Shane Vieau" },
                 { "name": "La Bola Negra", "detail": "Roger Bellés, Judit Ferrer" },
                 { "name": "Project Hail Mary", "detail": "Charles Wood, John Bush" },
-                { "name": "Hope", "detail": "Lee Hwo-kyoung" }
+                { "name": "Digger", "detail": "Dennis Gassner, Richard L. Johnson" }
             ]
         },
 
@@ -280,7 +280,7 @@
             "nominees": [
                 { "name": "Werwulf", "detail": "TBA" },
                 { "name": "Digger", "detail": "TBA" },
-                { "name": "Clayface", "detail": "TBA" },
+                { "name": "The Odyssey", "detail": "TBA" },
                 { "name": "Dune: Part Three", "detail": "TBA" },
                 { "name": "Wicker", "detail": "TBA" }
             ]
@@ -310,11 +310,11 @@
             "shouldWin": "Dune: Part Three",
             "winner": "",
             "nominees": [
-                { "name": "Dune: Part Three", "detail": "Paul Lambert, Mag Sarnowska, Paul Molles, Gerd Nefzer, Stephen James, Rhys Salcombe, Sarah McLauchlan, Max Rees" },
-                { "name": "Godzilla Minus Zero", "detail": "Kiyoko Shibuya, Takayuki Ueki, Eishin Okubo, Tatsuya Nojima" },
-                { "name": "Project Hail Mary", "detail": "Paul Lambert, Mag Sarnowska, Stuart Penn, Robert Winter, Michael Zaman, Neal Scanlan, James Ortiz" },
-                { "name": "Resident Evil", "detail": "Alessandro Ongaro, Brice Parker, Carolyn Shea, Kevin Smith, Jo Davison, Eric Reynolds, Janet Walterws, William Wright Anderson" },
-                { "name": "Avengers: Doomsday", "detail": "Christopher Townsend, Allison Paul, Sean Walker, Sidney Kombo-Kintombo, Andy Taylor" }
+                { "name": "Dune: Part Three", "detail": "TBA" },
+                { "name": "Godzilla Minus Zero", "detail": "TBA" },
+                { "name": "Project Hail Mary", "detail": "TBA" },
+                { "name": "The Odyssey", "detail": "TBA" },
+                { "name": "Wildwood", "detail": "TBA" }
             ]
         },
 

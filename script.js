@@ -6,7 +6,8 @@ const scoreText = document.getElementById("scoreText");
 const emptyText = document.getElementById("emptyText");
 
 const SNAPSHOTS = [
-    { id: "current", label: "Current (NYFF)", date: "Latest", file: "predictions.json" },
+    { id: "current", label: "Current", date: "Latest", file: "predictions.json" },
+    { id: "post-nyff", label: "Post-NYFF", date: "Oct 30", file: "predictions-nyff.json" },
     { id: "critics-choice", label: "Critics Choice", date: "Jan 3", file: "predictions-critics-choice.json" },
     { id: "golden-globes", label: "Golden Globes", date: "Jan 10", file: "predictions-golden-globes.json" },
     { id: "bafta", label: "BAFTA", date: "Feb 21", file: "predictions-bafta.json" },
